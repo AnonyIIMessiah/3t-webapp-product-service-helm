@@ -1,0 +1,24 @@
+appName: product-service
+
+deployment:
+  replicas: 1
+  image:  
+    repository: demoniiexe/microservice-product
+    tag: latest
+    pullPolicy: Always
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 200m
+      memory: 512Mi
+service:
+  type: ClusterIP
+  port: 5002
+  targetPort: 5002
+hpa:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 5
+  averageUtilization: 50
